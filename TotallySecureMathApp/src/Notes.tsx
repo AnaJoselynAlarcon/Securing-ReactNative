@@ -14,6 +14,8 @@ import Note from "./components/Note";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { TRootStackParamList } from "./App";
 
+import EncryptedStorage from "react-native-encrypted-storage";
+
 export interface INote {
   title: string;
   text: string;
@@ -59,12 +61,18 @@ export default class Notes extends React.Component<TProps, IState> {
       this.props.route.params.user.username +
       "-" +
       this.props.route.params.user.password;
-
-    const value = await AsyncStorage.getItem("notes-" + suffix);
-
-    if (value !== null) {
-      return JSON.parse(value);
-    } else {
+    /* Implemented EncryptedStorage to get notes securely
+        and try-catch block to handle errors
+       */
+    try {
+      const value = await EncryptedStorage.getItem("notes-" + suffix);
+      if (value !== null) {
+        return JSON.parse(value);
+      } else {
+        return [];
+      }
+    } catch (error) {
+      console.error("Error retrieving stored notes:", error);
       return [];
     }
   }
@@ -75,8 +83,15 @@ export default class Notes extends React.Component<TProps, IState> {
       "-" +
       this.props.route.params.user.password;
 
-    const jsonValue = JSON.stringify(notes);
-    await AsyncStorage.setItem("notes-" + suffix, jsonValue);
+    /* Implemented EncryptedStorage to store notes securely
+     */
+
+    try {
+      const jsonValue = JSON.stringify(notes);
+      await EncryptedStorage.setItem("notes-" + suffix, jsonValue);
+    } catch (error) {
+      console.error("Error storing notes:", error);
+    }
   }
 
   private onNoteTitleChange(value: string) {
