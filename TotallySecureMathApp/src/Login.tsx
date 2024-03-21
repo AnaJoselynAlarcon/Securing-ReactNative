@@ -5,6 +5,7 @@ import { TRootStackParamList } from "./App";
 /**
  * Import bcryptjs library and create a salt variable
  */
+
 var bcrypt = require("bcryptjs");
 var salt = bcrypt.genSaltSync(10);
 
