@@ -8,15 +8,15 @@
 
 🔒 **Type of Vulnerability: Insecure Data Storage**  
 **Description:** User notes are stored in the AsyncStorage without encryption or additional security measures, such as data obfuscation or access controls.  
-**Potential Issues:** This vulnerability exposes user data to potential unauthorized access if the device is compromised. Attackers could extract sensitive information stored in the AsyncStorage, including user credentials or sensitive notes.
+**Potential Issues:** This vulnerability exposes user data to potential unauthorized access if the device is compromised[1]. Attackers could extract sensitive information stored in the AsyncStorage, including user credentials or sensitive notes.
 
 🔑 **Type of Vulnerability: Improper Authentication**  
 **Description:** User authentication is not properly implemented in the component. It relies on the user object passed through navigation params without any validation or verification.  
-**Potential Issues:** Lack of proper authentication allows potential attackers to access the Notes component without valid credentials. Attackers could exploit this vulnerability to gain unauthorized access to sensitive user data or perform unauthorized actions within the application.
+**Potential Issues:** Lack of proper authentication allows potential attackers to access the Notes component without valid credentials. Attackers could exploit this vulnerability to gain unauthorized access to sensitive user data or perform unauthorized actions[2] within the application.
 
 🛡️ **Type of Vulnerability: Insufficient Input Validation**  
 **Description:** User input for note titles and equations is not sufficiently validated. The component allows empty titles or equations to be added as notes.  
-**Potential Issues:** Insufficient input validation increases the risk of storing malformed or unexpected data, leading to potential application errors or data corruption. Attackers could leverage this vulnerability to inject malicious code or trigger unexpected behavior within the application.
+**Potential Issues:** Insufficient input validation increases the risk of storing malformed or unexpected data, leading to potential application errors or data corruption. Attackers could leverage this vulnerability to inject malicious code or trigger unexpected behavior[3] within the application.
 
 🚨 **Type of Vulnerability: Insecure Code Practices**  
 **Description:** The component lacks proper error handling and exception management, such as try-catch blocks or error logging.  
@@ -30,9 +30,9 @@
 
 💉 **Type of Vulnerability: Code Injection**  
 **Description:** The Note component utilizes the eval() function to evaluate mathematical expressions provided by users. This introduces the risk of code injection attacks, where attackers can execute arbitrary JavaScript code within the application's context.  
-**Potential Impact:** Malicious users could exploit this vulnerability to inject and execute arbitrary code, leading to unauthorized actions, data manipulation, or unauthorized access to sensitive information.
+**Potential Impact:** Malicious users could exploit this vulnerability to inject and execute arbitrary code[4], leading to unauthorized actions, data manipulation, or unauthorized access to sensitive information.
 
-## Security Measures Importance and Reflection
+## Security Measures Importance and Reflection :cloud:
 
 #### 🔒 Why Security Measures Are Important
 
@@ -53,3 +53,11 @@ In conclusion, implementing comprehensive security measures is vital for maintai
 - Security in all Development Lifecycle: Integrate security into every stage of the development process, since the planning stage to deployment and specially in maintenance.
 
 - Collaboration and Knowledge Sharing: Research, study and collaborate with other developers to improve security awareness and expertise.
+
+References:
+[1] OWASP. “M2: Insecure Data Storage.” OWASP. Accessed: Mar 20, 2024. [Online]. Available: [ Web Address](https://owasp.org/www-project-mobile-top-10/2016-risks/m2-insecure-data-storage)
+
+[2] S. Streichsbier. “Improper Authentication.” GUARDRAILS. Accessed: Mar 20, 2024. [Online]. Available:[ Web Address](https://docs.guardrails.io/docs/vulnerability-classes/insecure-authentication/improper-authentication#:~:text=Examples%20of%20improper%20authentication%20vulnerabilities,to%20guess%20or%20crack%20them.)
+[3] CWE Content Team. “CWE-20: Improper Input Validation.” CWE. Accessed: Accessed: Mar 20, 2024. [Online]. Available:[ Web Address](https://cwe.mitre.org/data/definitions/20.html#:~:text=When%20software%20does%20not%20validate,resource%2C%20or%20arbitrary%20code%20execution.)
+
+[4] W. Rezos. “Code Injection.” OWASP. Accessed: Accessed: Mar 20, 2024. [Online]. Available: [Web Address](https://owasp.org/www-community/attacks/Code_Injection)
